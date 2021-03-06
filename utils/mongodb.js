@@ -1,6 +1,6 @@
 import { MongoClient } from 'mongodb'
 
-const { MONGODB_URI, MONGODB_DB } = process.env
+//const { MONGODB_URI, MONGODB_DB } = process.env
 
 if (!mongodb+srv://BacHung:hipycd5jDynDPEFj@bachung.rins6.mongodb.net/bachung?retryWrites=true&w=majority) {
   throw new Error(
@@ -36,10 +36,10 @@ export async function connectToDatabase() {
       useUnifiedTopology: true,
     }
 
-    cached.promise = MongoClient.connect(MONGODB_URI, opts).then((client) => {
+    cached.promise = MongoClient.connect(mongodb+srv://BacHung:hipycd5jDynDPEFj@bachung.rins6.mongodb.net/bachung?retryWrites=true&w=majority, opts).then((client) => {
       return {
         client,
-        db: client.db(MONGODB_DB),
+        db: client.db(bachung),
       }
     })
   }
