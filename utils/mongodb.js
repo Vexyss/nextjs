@@ -1,14 +1,16 @@
 import { MongoClient } from 'mongodb'
 
 //const { MONGODB_URI, MONGODB_DB } = process.env
+const MONGODB_URI = mongodb+srv://BacHung:hipycd5jDynDPEFj@bachung.rins6.mongodb.net/bachung?retryWrites=true&w=majority
+const MONGODB_DB = bachung
 
-if (!mongodb+srv://BacHung:hipycd5jDynDPEFj@bachung.rins6.mongodb.net/bachung?retryWrites=true&w=majority) {
+if (!MONGODB_URI) {
   throw new Error(
     'Please define the MONGODB_URI environment variable inside .env.local'
   )
 }
 
-if (!bachung) {
+if (!MONGODB_DB) {
   throw new Error(
     'Please define the MONGODB_DB environment variable inside .env.local'
   )
@@ -36,10 +38,10 @@ export async function connectToDatabase() {
       useUnifiedTopology: true,
     }
 
-    cached.promise = MongoClient.connect(mongodb+srv://BacHung:hipycd5jDynDPEFj@bachung.rins6.mongodb.net/bachung?retryWrites=true&w=majority, opts).then((client) => {
+    cached.promise = MongoClient.connect(MONGODB_URI, opts).then((client) => {
       return {
         client,
-        db: client.db(bachung),
+        db: client.db(MONGODB_DB),
       }
     })
   }
